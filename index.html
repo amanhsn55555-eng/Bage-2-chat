@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>واجهة احترافية</title>
 
-<!-- Font Awesome الصحيح -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
+    /* منع تحديد النص والنسخ */
+    * {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -17,8 +28,14 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
+  touch-action: pan-y; /* يمنع pinch-zoom على التاتش */
+  zoom: 1; /* يمنع الزوم في بعض المتصفحات القديمة */
 }
 
+/* الصفحة */
+  
+  
+  
 #mainFrame {
   width: 100%;
   flex: 1;
@@ -40,17 +57,13 @@ body {
   justify-content: space-around;
   align-items: center;
   border-top: 2px solid rgba(255, 255, 255, 0.6);
-  box-shadow:
-    inset 0 4px 8px -4px rgba(255, 255, 255, 0.8),
-    inset 0 -4px 8px -4px rgba(2, 84, 126, 0.3),
-    0 -5px 15px -3px rgba(14, 165, 233, 0.3);
-  transform: perspective(600px) rotateX(1.5deg);
   border-radius: 25px 25px 0 0;
+  transform: perspective(600px) rotateX(1.5deg);
   position: relative;
   overflow: hidden;
 }
 
-/* icon container */
+/* icons */
 .icon {
   width: 34px;
   height: 34px;
@@ -59,13 +72,11 @@ body {
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-
   background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
   box-shadow:
     inset 2px 2px 5px rgba(0,0,0,0.6),
     inset -2px -2px 5px rgba(255,255,255,0.15),
     0 2px 6px rgba(0,0,0,0.4);
-
   transition: 0.25s;
 }
 
@@ -79,15 +90,11 @@ body {
 }
 
 .icon.active {
-  box-shadow:
-    inset 3px 3px 6px rgba(0,0,0,0.7),
-    0 0 12px rgba(0,234,255,0.5);
+  box-shadow: 0 0 12px rgba(0,234,255,0.5);
 }
 
-/* panels */
+/* النوافذ */
 .panel {
-  border: 3px solid;
-border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   position: fixed;
   top: 0;
   right: -100%;
@@ -96,6 +103,27 @@ border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   background: #111;
   transition: 0.35s;
   z-index: 999;
+
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* بوردر متدرج منحني صحيح */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 2px;
+  background: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff);
+
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
 }
 
 .panel iframe {
@@ -108,19 +136,39 @@ border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   width: 100%;
 }
 
+/* زر الإغلاق */
 .hideBtn {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 44px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0,0,3,0.5);
+  background: rgba(0,0,0,0.5);
   color: red;
   cursor: pointer;
+  z-index: 10;
+}
+
+/* settings */
+#settings p {
+  background: linear-gradient(145deg, #b8e6f0, #6bb5d0, #3a8ba8);
+  padding: 15px 20px;
+  border-radius: 25px;
+  margin: 12px 0;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  text-align: right;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: 0.2s;
+}
+
+#settings p:hover {
+  transform: translateY(-3px);
 }
 </style>
 </head>
@@ -129,6 +177,7 @@ border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
 
 <iframe id="mainFrame" src="https://amanhsn55555-eng.github.io/Rom-amhah/"></iframe>
 
+<!-- navbar -->
 <div class="navbar">
   <div class="icon active" onclick="showPanel('panel1', this)">
     <i class="fa-solid fa-user-group"></i>
@@ -151,6 +200,7 @@ border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   </div>
 </div>
 
+<!-- panels -->
 <div id="panel1" class="panel">
   <div class="hideBtn" onclick="hidePanel('panel1')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Users-chat/"></iframe>
@@ -171,13 +221,15 @@ border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   <iframe src="https://amanhsn55555-eng.github.io/Gdar-chat/"></iframe>
 </div>
 
+<!-- settings (مسترجع بالكامل) -->
 <div id="settings" class="panel">
   <div class="hideBtn" onclick="hidePanel('settings')">×</div>
+
   <div style="padding:20px; color:white;">
-    <p>ملفي الشخصي</p>
-    <p>الإشعارات</p>
-    <p>المتجر</p>
-    <p>المحفظة</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mlf-chat/')">ملفي الشخصي</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Users-chat/')">الإشعارات</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">المتجر</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">المحفظة</p>
   </div>
 </div>
 
@@ -192,6 +244,19 @@ function showPanel(id, el) {
 
 function hidePanel(id) {
   document.getElementById(id).style.right = "-100%";
+}
+
+function openSub(link) {
+  let win = document.createElement("div");
+  win.className = "panel";
+  win.style.right = "0";
+
+  win.innerHTML = `
+    <div class="hideBtn" onclick="this.parentElement.remove()">×</div>
+    <iframe src="${link}"></iframe>
+  `;
+
+  document.body.appendChild(win);
 }
 </script>
 

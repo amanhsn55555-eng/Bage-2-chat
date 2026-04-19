@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>واجهة احترافية</title>
 
+<!-- Font Awesome الصحيح -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -13,133 +14,43 @@ body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
   overflow: hidden;
-
-  /* نخلي العناصر عمودية */
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 
-/* الصفحة تاخذ كل المساحة */
 #mainFrame {
   width: 100%;
-  flex: 1; /* هذا المهم */
+  flex: 1;
   border: none;
 }
 
-/* الشريط صار جزء من الصفحة */
-    
-/* الشريط */
-    
-
-/* الحاوية المقعّرة */
-    .navbar {
+/* navbar */
+.navbar {
   width: 100%;
   height: 45px;
-  
-  /* خلفية ثلجية متدرجة محدبة */
-  background: linear-gradient(
-    to top,
+  background: linear-gradient(to top,
     rgba(2, 84, 126, 0.3),
     rgba(186, 230, 253, 0.4),
     rgba(255, 255, 255, 0.2)
   );
-  
-  /* ضبابية زجاجية ثلجية */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  
   display: flex;
   justify-content: space-around;
   align-items: center;
-  
-  /* حدود علوية ثلجية */
   border-top: 2px solid rgba(255, 255, 255, 0.6);
-  
-  /* ظلال داخلية وخارجية للتأثير المحدب */
-  box-shadow: 
+  box-shadow:
     inset 0 4px 8px -4px rgba(255, 255, 255, 0.8),
     inset 0 -4px 8px -4px rgba(2, 84, 126, 0.3),
     0 -5px 15px -3px rgba(14, 165, 233, 0.3);
-  
-  /* تأثير 3D محدب */
   transform: perspective(600px) rotateX(1.5deg);
-  transform-origin: bottom;
-  
-  /* زوايا دائرية من الأعلى */
   border-radius: 25px 25px 0 0;
-  
-  /* حواف خارجية ثلجية */
   position: relative;
   overflow: hidden;
 }
 
-/* طبقة لمعة الثلج المتحركة */
-.navbar::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 30% 20%,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(224, 242, 254, 0.2) 40%,
-    transparent 70%
-  );
-  transform: rotate(15deg);
-  animation: iceGlow 5s infinite alternate;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes iceGlow {
-  0% { opacity: 0.3; transform: rotate(15deg) scale(1); }
-  100% { opacity: 0.7; transform: rotate(15deg) scale(1.05); }
-}
-
-/* طبقة حبيبات الثلج */
-.navbar::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noise)" opacity="0.06"/%3E%3C/svg%3E');
-  border-radius: 25px 25px 0 0;
-  pointer-events: none;
-  z-index: 2;
-  mix-blend-mode: overlay;
-}
-
-/* أيقونات النافبار */
-.navbar a,
-.navbar button,
-.navbar div {
-  position: relative;
-  z-index: 3;
-  color: #0c4a6e;
-  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
-  transition: all 0.3s ease;
-}
-
-.navbar i {
-  color: #0369a1;
-  text-shadow: 
-    2px 2px 4px rgba(255, 255, 255, 0.9),
-    -1px -1px 2px rgba(2, 84, 126, 0.2);
-}
-
-/* تأثير hover ثلجي */
-.navbar a:hover,
-.navbar button:hover {
-  transform: translateY(-3px);
-  text-shadow: 
-    3px 3px 6px rgba(255, 255, 255, 1),
-    -1px -1px 3px rgba(2, 84, 126, 0.3);
-}
+/* icon container */
 .icon {
   width: 34px;
   height: 34px;
@@ -148,12 +59,8 @@ body {
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
-  position: relative;
 
-  /* تأثير الثلج */
   background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
-  
-  /* concave */
   box-shadow:
     inset 2px 2px 5px rgba(0,0,0,0.6),
     inset -2px -2px 5px rgba(255,255,255,0.15),
@@ -162,63 +69,25 @@ body {
   transition: 0.25s;
 }
 
-/* لمعة زجاج */
-.icon::before {
-  content: "";
-  position: absolute;
-  top: 4px;
-  left: 6px;
-  width: 60%;
-  height: 40%;
-  background: rgba(255,255,255,0.25);
-  border-radius: 50%;
-  filter: blur(2px);
-}
-
-/* الأيقونة نفسها */
 .icon i {
   color: #dffcff;
   font-size: 14px;
-  text-shadow: 0 0 6px rgba(0,234,255,0.6);
 }
 
-/* hover */
 .icon:hover {
   transform: translateY(-2px) scale(1.05);
-
-  box-shadow:
-    inset 1px 1px 3px rgba(0,0,0,0.5),
-    inset -1px -1px 3px rgba(255,255,255,0.2),
-    0 4px 10px rgba(0,234,255,0.3);
 }
 
-/* active */
 .icon.active {
   box-shadow:
     inset 3px 3px 6px rgba(0,0,0,0.7),
-    inset -2px -2px 5px rgba(0,255,255,0.2),
     0 0 12px rgba(0,234,255,0.5);
 }
 
-/* الأيقونات */
-    
-.icon {
-  color: #aaa;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.icon:hover {
-  color: #00eaff;
-}
-
-.icon.active {
-  color: #00eaff;
-}
-
-/* النوافذ */
+/* panels */
 .panel {
+  border: 3px solid;
+border-image: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff) 1;
   position: fixed;
   top: 0;
   right: -100%;
@@ -239,104 +108,76 @@ body {
   width: 100%;
 }
 
-/* زر الإغلاق *//* زر الإغلاق */
 .hideBtn {
   position: absolute;
   top: 10px;
-  right: 10px; /* بدل left */
-
+  right: 10px;
   width: 30px;
   height: 30px;
   border-radius: 50%;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: rgba(0,0,3,0.5);
-  backdrop-filter: blur(6px);
   color: red;
-  font-size: 16px;
   cursor: pointer;
-
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-  transition: 0.25s;
-}
-    
-    #settings p {
-  background: linear-gradient(145deg, #b8e6f0, #6bb5d0, #3a8ba8);
-  padding: 15px 20px;
-  border-radius: 25px;
-  margin: 12px 0;
-  cursor: pointer;
-  color: #ffffff;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: right;
-  border-bottom: 5px solid #0a4a6a;
-  border-left: 2px solid rgba(255,255,255,0.4);
-  border-right: 2px solid rgba(255,255,255,0.2);
-  box-shadow: inset 0 3px 8px rgba(255,255,255,0.7), inset 0 -3px 6px rgba(0,0,0,0.15), 0 8px 0 #065a74, 0 12px 20px rgba(0,0,0,0.3), 0 0 20px #7dd3fc;
-  transform: perspective(500px) rotateX(3deg);
-  text-shadow: 0 2px 0 #065a74, 0 4px 8px rgba(0,0,0,0.2);
-  transition: all 0.15s ease;
-}
-
-#settings p:hover {
-  transform: perspective(500px) rotateX(2deg) translateY(-4px);
-  box-shadow: inset 0 4px 10px rgba(255,255,255,0.9), inset 0 -3px 6px rgba(0,0,0,0.15), 0 6px 0 #065a74, 0 15px 25px rgba(0,0,0,0.4), 0 0 30px #38bdf8;
-  background: linear-gradient(145deg, #c4eaf5, #7ec8e0, #4a9eb8);
-}
-
-#settings p:active {
-  transform: perspective(500px) rotateX(3deg) translateY(4px);
-  box-shadow: inset 0 5px 10px rgba(0,0,0,0.2), inset 0 -2px 4px rgba(255,255,255,0.4), 0 4px 0 #065a74, 0 8px 15px rgba(0,0,0,0.3);
 }
 </style>
 </head>
 
 <body>
 
-<!-- الصفحة -->
 <iframe id="mainFrame" src="https://amanhsn55555-eng.github.io/Rom-amhah/"></iframe>
 
-<!-- الشريط (صار تحت حقيقي) -->
 <div class="navbar">
-  <div class="icon active" onclick="showPanel('panel1', this)"><i class="fas fa-user-friends"></i></div>
-  <div class="icon" onclick="showPanel('panel2', this)"><i class="fas fa-comment-dots"></i></div>
-  <div class="icon" onclick="showPanel('panel3', this)"><i class="fas fa-couch"></i></div>
-  <div class="icon" onclick="showPanel('panel4', this)"><i class="fas fa-th-large"></i></div>
-  <div class="icon" onclick="showPanel('settings', this)"><i class="fas fa-sliders-h"></i></div>
+  <div class="icon active" onclick="showPanel('panel1', this)">
+    <i class="fa-solid fa-user-group"></i>
+  </div>
+
+  <div class="icon" onclick="showPanel('panel2', this)">
+    <i class="fa-solid fa-comment-dots"></i>
+  </div>
+
+  <div class="icon" onclick="showPanel('panel3', this)">
+    <i class="fa-solid fa-couch"></i>
+  </div>
+
+  <div class="icon" onclick="showPanel('panel4', this)">
+    <i class="fa-solid fa-border-all"></i>
+  </div>
+
+  <div class="icon" onclick="showPanel('settings', this)">
+    <i class="fa-solid fa-sliders"></i>
+  </div>
 </div>
 
-<!-- النوافذ -->
 <div id="panel1" class="panel">
-  <div class="hideBtn" onclick="hidePanel('panel1')">-</div>
+  <div class="hideBtn" onclick="hidePanel('panel1')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Users-chat/"></iframe>
 </div>
 
 <div id="panel2" class="panel">
-  <div class="hideBtn" onclick="hidePanel('panel2')">-</div>
+  <div class="hideBtn" onclick="hidePanel('panel2')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Msgtdy/"></iframe>
 </div>
 
 <div id="panel3" class="panel full">
-  <div class="hideBtn" onclick="hidePanel('panel3')">-</div>
+  <div class="hideBtn" onclick="hidePanel('panel3')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Grftodyyy/"></iframe>
 </div>
 
 <div id="panel4" class="panel">
-  <div class="hideBtn" onclick="hidePanel('panel4')">-</div>
+  <div class="hideBtn" onclick="hidePanel('panel4')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Gdar-chat/"></iframe>
 </div>
 
 <div id="settings" class="panel">
-  <div class="hideBtn" onclick="hidePanel('settings')">-</div>
+  <div class="hideBtn" onclick="hidePanel('settings')">×</div>
   <div style="padding:20px; color:white;">
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mlf-chat/')">ملفي الشخصي</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Users-chat/')">الإشعارات</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">المتجر</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">المحفظة</p>
+    <p>ملفي الشخصي</p>
+    <p>الإشعارات</p>
+    <p>المتجر</p>
+    <p>المحفظة</p>
   </div>
 </div>
 
@@ -351,17 +192,6 @@ function showPanel(id, el) {
 
 function hidePanel(id) {
   document.getElementById(id).style.right = "-100%";
-}
-
-function openSub(link) {
-  let win = document.createElement("div");
-  win.className = "panel";
-  win.style.right = "0";
-  win.innerHTML = `
-    <div class="hideBtn" onclick="this.parentElement.remove()">×</div>
-    <iframe src="${link}"></iframe>
-  `;
-  document.body.appendChild(win);
 }
 </script>
 

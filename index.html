@@ -49,13 +49,29 @@
   <style>
     /* اترك جميع أكواد CSS الموجودة لديك هنا دون أي تغيير */
  
+
 /* ================ إعادة ضبط كاملة ================ */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none; /* منع التحديد */
-  -webkit-tap-highlight-color: transparent; /* إزالة الخلفية الزرقاء عند الضغط على الجوال */
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100vh; /* ارتفاع كامل الشاشة */
+  max-height: 100vh;
+  overflow: hidden !important;
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  touch-action: none; /* يمنع أي حركة */
 }
 
 body {
@@ -65,56 +81,62 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  position: fixed; /* يمنع التمرير الزائد في كروم */
-  inset: 0;
 }
 
-/* ================ الإطار الرئيسي (يأخذ كل المساحة المتاحة) ================ */
+/* ================ الإطار الرئيسي = 90% من ارتفاع الشاشة ================ */
 #mainFrame {
   width: 100%;
-  flex: 1; /* يتمدد ليملأ الفراغ بين الهيدر والفوتر */
+  height: 90vh; /* 90% بالضبط */
+  max-height: 90vh;
+  min-height: 90vh;
+  flex: 0 0 90vh; /* ثابت لا يتمدد ولا ينكمش */
   border: none;
   display: block;
-  background: #fff; /* خلفية أثناء التحميل */
+  background: #0f2027;
 }
 
-/* ================ شريط التنقل السفلي (Navbar) ================ */
+/* ================ شريط الأيقونات السفلي = 10% من ارتفاع الشاشة ================ */
 .navbar {
   width: 100%;
-  height: 35px; /* ارتفاع ثابت ومضمون */
-  min-height: 35px;
-  max-height: 35px;
-  flex-shrink: 0; /* يمنع انكماشه */
+  height: 10vh; /* 10% بالضبط */
+  max-height: 10vh;
+  min-height: 10vh;
+  flex: 0 0 10vh; /* ثابت لا يتمدد ولا ينكمش */
   
-  background: linear-gradient(to top, rgba(2, 84, 126, 0.9), rgba(186, 230, 253, 0.8), rgba(255, 255, 255, 0.6));
+  background: linear-gradient(to top, rgba(2, 84, 126, 0.95), rgba(186, 230, 253, 0.85), rgba(255, 255, 255, 0.7));
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
   
-  border-top: 2px solid rgba(255, 255, 255, 0.8);
+  border-top: 2px solid rgba(255, 255, 255, 0.9);
   border-radius: 30px 30px 0 0;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.4);
   
   position: relative;
   z-index: 99;
-  transform: perspective(600px) rotateX(1.5deg); /* حافظنا على التأثير الثلاثي الأبعاد */
+  transform: perspective(600px) rotateX(1.5deg);
+  margin: 0;
+  padding: 0 5px;
 }
 
-/* ================ أيقونات النافبار ================ */
+/* ================ أيقونات النافبار (في سطر واحد إجباري) ================ */
 .icon {
   width: 48px;
   height: 48px;
+  max-width: 15vw;
+  max-height: 8vh;
+  aspect-ratio: 1/1;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
   cursor: pointer;
+  flex-shrink: 0; /* يمنع انكماش الأيقونة */
   
   background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
   box-shadow: 
@@ -155,7 +177,7 @@ body {
   right: -100%;
   width: 90%;
   max-width: 400px;
-  height: 100%;
+  height: 100vh;
   background: #111;
   transition: right 0.3s ease;
   z-index: 9999;
@@ -165,7 +187,6 @@ body {
   border-left: 2px solid #00eaff;
 }
 
-/* بوردر متدرج */
 .panel::before {
   content: "";
   position: absolute;
@@ -182,7 +203,7 @@ body {
 
 .panel iframe {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   border: none;
   position: relative;
   z-index: 2;
@@ -242,6 +263,27 @@ body {
   box-shadow: 0 0 20px #00eaff;
 }
 
+/* ================ ضمان سطر واحد للأيقونات على جميع الأجهزة ================ */
+@media (max-width: 480px) {
+  .icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+  .icon i {
+    font-size: 20px;
+  }
+}
+
+@media (max-height: 600px) {
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+  .icon i {
+    font-size: 18px;
+  }
+}
   
     /* منع تحديد النص والنسخ */
   *{transform:none!important;transition:none!important;animation:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;touch-action:pan-y!important;user-select:none!important;pointer-events:auto!important;will-change:auto!important}

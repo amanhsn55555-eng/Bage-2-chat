@@ -294,6 +294,9 @@ body {
     <i class="fa-solid fa-user-group"></i>
   </div>
 
+  <div class="icon" onclick="showRichPanel()">
+  <i class="fa-solid fa-crown" style="color: #FFD700 !important;"></i>
+</div>
   <div class="icon" onclick="showPanel('panel2', this)">
     <i class="fa-solid fa-comment-dots"></i>
   </div>
@@ -305,6 +308,8 @@ body {
   <div class="icon" onclick="showPanel('panel4', this)">
     <i class="fa-solid fa-border-all"></i>
   </div>
+  <!-- ==================== أيقونة الأثرياء ==================== -->
+
 
   <div class="icon" onclick="showPanel('settings', this)">
     <i class="fa-solid fa-sliders"></i>
@@ -319,7 +324,7 @@ body {
 
 <div id="panel2" class="panel">
   <div class="hideBtn" onclick="hidePanel('panel2')">×</div>
-  <iframe src="https://amanhsn55555-eng.github.io/Msgtdy/"></iframe>
+  <iframe src="https://amanhsn55555-eng.github.io/Msgtdy"></iframe>
 </div>
 
 <div id="panel3" class="panel full">
@@ -332,6 +337,7 @@ body {
   <iframe src="https://amanhsn55555-eng.github.io/Gdar-chat/"></iframe>
 </div>
 
+  
 <!-- settings (مسترجع بالكامل) -->
 <div id="settings" class="panel">
   <div class="hideBtn" onclick="hidePanel('settings')">×</div>
@@ -353,6 +359,24 @@ function showPanel(id, el) {
   el.classList.add('active');
 }
 
+  // ==================== دالة عرض صفحة الأثرياء في iframe ====================
+function showRichPanel() {
+  // إخفاء جميع البانلات أولاً
+  document.querySelectorAll('.panel').forEach(p => p.style.right = "-100%");
+  
+  // إنشاء نافذة جديدة لعرض صفحة الأثرياء
+  let richWin = document.createElement("div");
+  richWin.className = "panel";
+  richWin.style.right = "0";
+  
+  // نفس تصميم البانلات الأخرى (iframe مباشر)
+  richWin.innerHTML = `
+    <div class="hideBtn" onclick="this.parentElement.remove()">×</div>
+    <iframe src="https://amanhsn55555-eng.github.io/Athreaa-man-chat/"></iframe>
+  `;
+  
+  document.body.appendChild(richWin);
+}
 function hidePanel(id) {
   document.getElementById(id).style.right = "-100%";
 }

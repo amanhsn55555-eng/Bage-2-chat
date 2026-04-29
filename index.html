@@ -189,6 +189,7 @@ body {
 /* النوافذ */
 .panel {
   
+  
   margin-top: 0px;
       background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
       border: none !important;
@@ -241,7 +242,8 @@ body {
 
 /* زر الإغلاق */
 .hideBtn {
-  margin-top: 8px;
+  
+  margin-top: 0px;
       background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
       border: none !important;
       box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
@@ -250,10 +252,10 @@ body {
       display: flex;
       align-items: center;
   position: absolute;
-  top: 10px;
-  right: 44px;
-  width: 30px;
-  height: 30px;
+  top: 0px;
+  right: 4px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -264,22 +266,51 @@ body {
   z-index: 10;
 }
 
-/* settings */
 #settings p {
-  background: linear-gradient(145deg, #b8e6f0, #6bb5d0, #3a8ba8);
-  padding: 15px 20px;
-  border-radius: 25px;
-  margin: 12px 0;
+  width: 94%;
+  margin: 14px auto;
+  border-radius: 30px;
+  padding: 22px 20px;
+  text-align: center;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  color: #1e293b;
+  background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
+  border: none !important;
+  box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
   cursor: pointer;
-  color: #fff;
-  font-weight: bold;
-  text-align: right;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-  transition: 0.2s;
+  transition: 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+#settings p::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(148, 163, 184, 0.2), transparent);
+  transform: rotate(45deg);
+  animation: lightMove 4s infinite;
+}
+
+@keyframes lightMove {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
 #settings p:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: inset 2px 2px 8px #ffffff, inset -3px -3px 8px #94a3b8, 5px 5px 12px rgba(0,0,0,0.15), -2px -2px 6px rgba(255,255,255,0.7) !important;
+  color: #0f172a;
+}
+
+#settings p:active {
+  transform: scale(0.97);
+  box-shadow: inset 3px 3px 8px #cbd5e1, inset -2px -2px 5px #ffffff !important;
 }
 </style>
 </head>
@@ -338,15 +369,18 @@ body {
 </div>
 
   
-<!-- settings (مسترجع بالكامل) -->
-<div id="settings" class="panel">
-  <div class="hideBtn" onclick="hidePanel('settings')">×</div>
+<!-- settings (مسترجع بالكامل مع الأيقونات الجديدة) -->
+<div id="settings" class="panel" >
+  <div class="hideBtn" onclick="hidePanel('settings') ">×</div>
 
-  <div style="padding:20px; color:white;">
+  <div style="padding:20px; color:white; background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important; border: none !important; box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important; border-radius: 30px">
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Mlf-chat/')">ملفي الشخصي</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Tnbehtodyyy/')">الإشعارات</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Tnbehtodyyy/')">🔔 </p>
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Markiottody/')">المتجر</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">المحفظة</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">محفضتي</p>
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mqalat-tody/')">قصتي</p>
+    
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Daam-fany-tody/')"> مراسلة فريق البرمجه</p>
   </div>
 </div>
 

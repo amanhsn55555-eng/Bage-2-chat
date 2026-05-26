@@ -45,16 +45,8 @@
   }
   </script>
 
-  <!-- ==================== أنماط CSS الخاصة بك (تترك كما هي دون تغيير) ==================== -->
   <style>
-    /* اترك جميع أكواد CSS الموجودة لديك هنا دون أي تغيير */
- 
-
-
-  
     /* منع تحديد النص والنسخ */
-  
-  *{transform:none!important;transition:none!important;animation:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;touch-action:pan-y!important;user-select:none!important;pointer-events:auto!important;will-change:auto!important}
     * {
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -65,254 +57,234 @@
       padding: 0;
     }
 
-body {
-  margin-top: 8px;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100dvh;
+      touch-action: pan-y;
+      zoom: 1;
+    }
+
+    #mainFrame {
+      width: 100%;
+      flex: 1;
+      border: none;
+    }
+
+    /* navbar */
+    .navbar {
+      width: 100%;
+      height: 45px;
+      background: linear-gradient(to top,
+        rgba(2, 84, 126, 0.3),
+        rgba(186, 230, 253, 0.4),
+        rgba(255, 255, 255, 0.2)
+      );
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      border-top: 2px solid rgba(255, 255, 255, 0.6);
+      border-radius: 25px 25px 0 0;
+      transform: perspective(600px) rotateX(1.5deg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* icons */
+    .icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
+      box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,0.6),
+        inset -2px -2px 5px rgba(255,255,255,0.15),
+        0 2px 6px rgba(0,0,0,0.4);
+      transition: 0.25s;
+    }
+
+    .icon i {
+      color: red;
+      font-size: 14px;
+    }
+
+    .icon:hover {
+      transform: translateY(-2px) scale(1.05);
+    }
+
+    .icon.active {
+      box-shadow: 0 0 12px rgba(0,234,255,0.5);
+    }
+
+    /* النوافذ */
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 90%;
+      height: 100%;
+      background: #111;
+      transition: 0.35s;
+      z-index: 999;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      padding: 1px;
+      border-radius: 2px;
+      background: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff);
+      -webkit-mask: 
+        linear-gradient(#000 0 0) content-box, 
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .panel iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    /* زر الإغلاق */
+    .hideBtn {
+      position: absolute;
+      top: 0px;
+      right: 28px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.5);
+      color: red;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #settings p {
+      width: 94%;
+      margin: 14px auto;
+      border-radius: 30px;
+      padding: 22px 20px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.5px;
+      color: #1e293b;
       background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
       border: none !important;
       box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 0px 0px 0px 0px !important;
+      cursor: pointer;
+      transition: 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #settings p::after {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(148, 163, 184, 0.2), transparent);
+      transform: rotate(45deg);
+      animation: lightMove 4s infinite;
+    }
+
+    @keyframes lightMove {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    #settings p:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: inset 2px 2px 8px #ffffff, inset -3px -3px 8px #94a3b8, 5px 5px 12px rgba(0,0,0,0.15), -2px -2px 6px rgba(255,255,255,0.7) !important;
+      color: #0f172a;
+    }
+
+    #settings p:active {
+      transform: scale(0.97);
+      box-shadow: inset 3px 3px 8px #cbd5e1, inset -2px -2px 5px #ffffff !important;
+    }
+
+    /* ========== أيقونة الملف الشخصي ========== */
+    .profile-icon-nav {
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 100dvh;
-  touch-action: pan-y; /* يمنع pinch-zoom على التاتش */
-  zoom: 1; /* يمنع الزوم في بعض المتصفحات القديمة */
-}
+      justify-content: center;
+      border-radius: 50%;
+      cursor: pointer;
+      background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
+      box-shadow:
+        inset 2px 2px 5px rgba(0,0,0,0.6),
+        inset -2px -2px 5px rgba(255,255,255,0.15),
+        0 2px 6px rgba(0,0,0,0.4);
+      transition: 0.25s;
+      overflow: hidden;
+      border: 2px solid #fbbf24;
+    }
 
-/* الصفحة */
-  
-  
-  
-#mainFrame {
-  width: 100%;
-  flex: 1;
-  border: none;
-}
+    .profile-icon-nav img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
 
-/* navbar */
-.navbar {
-  margin-top: 8px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  width: 100%;
-  height: 45px;
-  background: linear-gradient(to top,
-    rgba(2, 84, 126, 0.3),
-    rgba(186, 230, 253, 0.4),
-    rgba(255, 255, 255, 0.2)
-  );
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 2px solid rgba(255, 255, 255, 0.6);
-  border-radius: 25px 25px 0 0;
-  transform: perspective(600px) rotateX(1.5deg);
-  position: relative;
-  overflow: hidden;
-}
+    .profile-icon-nav span {
+      font-size: 16px;
+    }
 
-/* icons */
-.icon {
-  margin-top: 8px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  cursor: pointer;
-  background: linear-gradient(145deg, rgba(255,255,255,0.25), rgba(0,0,0,0.25));
-  box-shadow:
-    inset 2px 2px 5px rgba(0,0,0,0.6),
-    inset -2px -2px 5px rgba(255,255,255,0.15),
-    0 2px 6px rgba(0,0,0,0.4);
-  transition: 0.25s;
-}
+    /* ========== تنبيه الخصوصية ========== */
+    .privacy-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.9);
+      color: white;
+      padding: 20px 30px;
+      border-radius: 15px;
+      z-index: 10000;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      border: 2px solid #ef4444;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      animation: fadeInOut 3s ease;
+    }
 
-.icon i {
-  margin-top: 8px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  color: red;
-  font-size: 14px;
-}
-
-.icon:hover {
-  margin-top: 8px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  transform: translateY(-2px) scale(1.05);
-}
-
-.icon.active {
-  margin-top: 8px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  box-shadow: 0 0 12px rgba(0,234,255,0.5);
-}
-
-/* النوافذ */
-.panel {
-  
-  
-  margin-top: 0px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 0px 0px 0px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 0px !important;
-      padding: 0px 0px 0px 0px !important;
-      display: flex;
-      align-items: center;
-  
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 90%;
-  height: 100%;
-  background: #111;
-  transition: 0.35s;
-  z-index: 999;
-
-  border-radius: 20px;
-  overflow: hidden;
-}
-
-/* بوردر متدرج منحني صحيح */
-.panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  border-radius: 2px;
-  background: linear-gradient(145deg, #00eaff, #3a8ba8, #ffffff);
-
-  -webkit-mask: 
-    linear-gradient(#000 0 0) content-box, 
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-
-  pointer-events: none;
-}
-
-.panel iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.full {
-  width: 100%;
-}
-
-/* زر الإغلاق */
-.hideBtn {
-  
-  margin-top: 0px;
-      background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-      border: none !important;
-      box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-      border-radius: 30px !important;
-      padding: 2px 2px 2px 10px !important;
-      display: flex;
-      align-items: center;
-  position: absolute;
-  top: 0px;
-  right: 28px;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0,0,0,0.5);
-  color: red;
-  cursor: pointer;
-  z-index: 10;
-}
-
-#settings p {
-  width: 94%;
-  margin: 14px auto;
-  border-radius: 30px;
-  padding: 22px 20px;
-  text-align: center;
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.5px;
-  color: #1e293b;
-  background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important;
-  border: none !important;
-  box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important;
-  cursor: pointer;
-  transition: 0.25s;
-  position: relative;
-  overflow: hidden;
-}
-
-#settings p::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(148, 163, 184, 0.2), transparent);
-  transform: rotate(45deg);
-  animation: lightMove 4s infinite;
-}
-
-@keyframes lightMove {
-  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-
-#settings p:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: inset 2px 2px 8px #ffffff, inset -3px -3px 8px #94a3b8, 5px 5px 12px rgba(0,0,0,0.15), -2px -2px 6px rgba(255,255,255,0.7) !important;
-  color: #0f172a;
-}
-
-#settings p:active {
-  transform: scale(0.97);
-  box-shadow: inset 3px 3px 8px #cbd5e1, inset -2px -2px 5px #ffffff !important;
-}
-</style>
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+      15% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      70% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    }
+  </style>
 </head>
 
 <body>
@@ -326,8 +298,14 @@ body {
   </div>
 
   <div class="icon" onclick="showRichPanel()">
-  <i class="fa-solid fa-crown" style="color: #FFD700 !important;"></i>
-</div>
+    <i class="fa-solid fa-crown" style="color: #FFD700 !important;"></i>
+  </div>
+  
+  <!-- ==================== أيقونة الملف الشخصي ==================== -->
+  <div class="profile-icon-nav" onclick="openProfile()" id="profileNavIcon">
+    <span>👤</span>
+  </div>
+  
   <div class="icon" onclick="showPanel('panel2', this)">
     <i class="fa-solid fa-comment-dots"></i>
   </div>
@@ -339,8 +317,6 @@ body {
   <div class="icon" onclick="showPanel('panel4', this)">
     <i class="fa-solid fa-border-all"></i>
   </div>
-  <!-- ==================== أيقونة الأثرياء ==================== -->
-
 
   <div class="icon" onclick="showPanel('settings', this)">
     <i class="fa-solid fa-sliders"></i>
@@ -368,65 +344,311 @@ body {
   <iframe src="https://amanhsn55555-eng.github.io/Gdar-chat/"></iframe>
 </div>
 
-  
-<!-- settings (مسترجع بالكامل مع الأيقونات الجديدة) -->
-<div id="settings" class="panel" >
-  <div class="hideBtn" onclick="hidePanel('settings') ">×</div>
-
+<!-- settings -->
+<div id="settings" class="panel">
+  <div class="hideBtn" onclick="hidePanel('settings')">×</div>
   <div style="padding:20px; color:white; background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important; border: none !important; box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important; border-radius: 30px">
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Mlf-chat/')">ملفي الشخصي</p>
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Tnbehtodyyy/')">🔔 </p>
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Markiottody/')">المتجر</p>
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">محفضتي</p>
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Mqalat-tody/')">قصتي</p>
-    
     <p onclick="openSub('https://amanhsn55555-eng.github.io/Daam-fany-tody/')"> مراسلة فريق البرمجه</p>
   </div>
 </div>
 
 <script>
+// ==================== نظام إدارة النوافذ المفتوحة ====================
+const openPanelsStack = []; // مكدس لتتبع النوافذ المفتوحة
+
+// ==================== فتح نافذة (بانل) ====================
 function showPanel(id, el) {
-  document.querySelectorAll('.panel').forEach(p => p.style.right = "-100%");
-  document.getElementById(id).style.right = "0";
-
-  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
-  el.classList.add('active');
-}
-
-  // ==================== دالة عرض صفحة الأثرياء في iframe ====================
-function showRichPanel() {
   // إخفاء جميع البانلات أولاً
   document.querySelectorAll('.panel').forEach(p => p.style.right = "-100%");
   
-  // إنشاء نافذة جديدة لعرض صفحة الأثرياء
+  // إظهار البانل المطلوب
+  const panel = document.getElementById(id);
+  if (panel) {
+    panel.style.right = "0";
+    // إضافة للنافذة للمكدس
+    if (!openPanelsStack.includes(id)) {
+      openPanelsStack.push(id);
+    }
+  }
+
+  // تحديث الأيقونات النشطة
+  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
+  if (el) el.classList.add('active');
+  
+  // إضافة حالة للتاريخ
+  history.pushState({ panelId: id, action: 'open' }, '', window.location.href);
+}
+
+// ==================== إخفاء نافذة (بانل) ====================
+function hidePanel(id) {
+  const panel = document.getElementById(id);
+  if (panel) {
+    panel.style.right = "-100%";
+  }
+  
+  // إزالة النافذة من المكدس
+  const index = openPanelsStack.indexOf(id);
+  if (index > -1) {
+    openPanelsStack.splice(index, 1);
+  }
+  
+  // إزالة الحالة النشطة من الأيقونات
+  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
+}
+
+// ==================== إغلاق جميع النوافذ المفتوحة ====================
+function closeAllPanels() {
+  document.querySelectorAll('.panel').forEach(p => p.style.right = "-100%");
+  openPanelsStack.length = 0; // تفريغ المكدس
+  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
+  
+  // إزالة النوافذ المنشأة ديناميكياً
+  document.querySelectorAll('.panel[data-dynamic="true"]').forEach(p => p.remove());
+}
+
+// ==================== إغلاق آخر نافذة مفتوحة ====================
+function closeLastPanel() {
+  if (openPanelsStack.length > 0) {
+    const lastPanelId = openPanelsStack.pop(); // أخذ آخر نافذة
+    hidePanel(lastPanelId);
+    return true; // تم إغلاق نافذة
+  }
+  
+  // التحقق من النوافذ الديناميكية
+  const dynamicPanels = document.querySelectorAll('.panel[data-dynamic="true"]');
+  if (dynamicPanels.length > 0) {
+    const lastDynamic = dynamicPanels[dynamicPanels.length - 1];
+    lastDynamic.remove();
+    return true; // تم إغلاق نافذة ديناميكية
+  }
+  
+  return false; // لا توجد نوافذ للإغلاق
+}
+
+// ==================== زر الرجوع في الموبايل ====================
+window.addEventListener('popstate', function(event) {
+  if (event.state && event.state.action === 'open') {
+    // إذا كان هناك حالة سابقة، نغلق النافذة الحالية
+    const closed = closeLastPanel();
+    
+    if (closed) {
+      // منع الرجوع للصفحة السابقة إذا تم إغلاق نافذة
+      history.pushState({ action: 'prevent' }, '', window.location.href);
+    }
+  } else {
+    // إذا لم تكن هناك نوافذ مفتوحة، نغلق جميع النوافذ
+    const hasOpenPanels = document.querySelectorAll('.panel[style*="right: 0px"], .panel[style*="right:0px"]').length > 0;
+    
+    if (hasOpenPanels) {
+      closeAllPanels();
+      history.pushState({ action: 'prevent' }, '', window.location.href);
+    }
+  }
+});
+
+// ==================== معالجة زر الرجوع الفعلي ====================
+// إضافة حالة أولية للتاريخ
+history.pushState({ action: 'initial' }, '', window.location.href);
+
+// معالجة إضافية لضمان عمل زر الرجوع
+window.addEventListener('load', function() {
+  history.pushState({ action: 'loaded' }, '', window.location.href);
+});
+
+// ==================== فتح الملف الشخصي ====================
+function openProfile() {
+  // إنشاء نافذة جديدة للملف الشخصي
+  let profileWin = document.createElement("div");
+  profileWin.className = "panel";
+  profileWin.style.right = "0";
+  profileWin.id = "profilePanel";
+  profileWin.setAttribute('data-dynamic', 'true');
+  
+  profileWin.innerHTML = `
+    <div class="hideBtn" onclick="closeDynamicPanel(this.parentElement)">×</div>
+    <iframe src="https://amanhsn55555-eng.github.io/Mlf-chat/" id="profileIframe"></iframe>
+  `;
+  
+  document.body.appendChild(profileWin);
+  
+  // إضافة للمكدس
+  if (!openPanelsStack.includes('profilePanel')) {
+    openPanelsStack.push('profilePanel');
+  }
+  
+  // إضافة حالة للتاريخ
+  history.pushState({ panelId: 'profilePanel', action: 'open' }, '', window.location.href);
+  
+  // الاستماع لرسائل من iframe الملف الشخصي
+  window.addEventListener('message', handleProfileMessage);
+}
+
+// ==================== إغلاق نافذة ديناميكية ====================
+function closeDynamicPanel(panelElement) {
+  if (panelElement) {
+    const panelId = panelElement.id;
+    panelElement.remove();
+    
+    // إزالة من المكدس
+    const index = openPanelsStack.indexOf(panelId);
+    if (index > -1) {
+      openPanelsStack.splice(index, 1);
+    }
+  }
+}
+
+// ==================== معالجة رسائل الخصوصية ====================
+function handleProfileMessage(event) {
+  if (event.origin !== 'https://amanhsn55555-eng.github.io') return;
+  
+  const data = event.data;
+  
+  if (data.type === 'privacyStatus') {
+    const isPrivate = data.isPrivate;
+    
+    if (isPrivate) {
+      console.log('🔒 الخاص مغلق - لا يمكن المراسلة');
+      showPrivacyAlert('🔒 هذا المستخدم أغلق الخاص ولا يمكن مراسلته');
+    } else {
+      console.log('🔓 الخاص مفتوح - يمكن المراسلة');
+    }
+  }
+  
+  if (data.type === 'requestMessage') {
+    const targetUserId = data.userId;
+    const isPrivate = data.isPrivate;
+    
+    if (isPrivate) {
+      showPrivacyAlert('🔒 عذراً، هذا المستخدم أغلق الخاص ولا يستقبل رسائل حالياً');
+    } else {
+      openMessageWindow(targetUserId);
+    }
+  }
+  
+  if (data.type === 'updateAvatar') {
+    updateProfileIcon(data.avatarUrl, data.emoji);
+  }
+}
+
+// ==================== إظهار تنبيه الخصوصية ====================
+function showPrivacyAlert(message) {
+  const alertDiv = document.createElement('div');
+  alertDiv.className = 'privacy-alert';
+  alertDiv.textContent = message;
+  document.body.appendChild(alertDiv);
+  
+  setTimeout(() => {
+    alertDiv.remove();
+  }, 3000);
+}
+
+// ==================== فتح نافذة المراسلة ====================
+function openMessageWindow(userId) {
+  // إغلاق نافذة الملف الشخصي أولاً
+  const profilePanel = document.getElementById('profilePanel');
+  if (profilePanel) {
+    closeDynamicPanel(profilePanel);
+  }
+  
+  // فتح نافذة المراسلة
+  let msgWin = document.createElement("div");
+  msgWin.className = "panel";
+  msgWin.style.right = "0";
+  msgWin.id = "messagePanel";
+  msgWin.setAttribute('data-dynamic', 'true');
+  
+  msgWin.innerHTML = `
+    <div class="hideBtn" onclick="closeDynamicPanel(this.parentElement)">×</div>
+    <iframe src="https://amanhsn55555-eng.github.io/Msgtdy?user=${userId}"></iframe>
+  `;
+  
+  document.body.appendChild(msgWin);
+  
+  // إضافة للمكدس
+  if (!openPanelsStack.includes('messagePanel')) {
+    openPanelsStack.push('messagePanel');
+  }
+  
+  // إضافة حالة للتاريخ
+  history.pushState({ panelId: 'messagePanel', action: 'open' }, '', window.location.href);
+}
+
+// ==================== عرض صفحة الأثرياء ====================
+function showRichPanel() {
+  document.querySelectorAll('.panel').forEach(p => p.style.right = "-100%");
+  
   let richWin = document.createElement("div");
   richWin.className = "panel";
   richWin.style.right = "0";
+  richWin.id = "richPanel";
+  richWin.setAttribute('data-dynamic', 'true');
   
-  // نفس تصميم البانلات الأخرى (iframe مباشر)
   richWin.innerHTML = `
-    <div class="hideBtn" onclick="this.parentElement.remove()">×</div>
+    <div class="hideBtn" onclick="closeDynamicPanel(this.parentElement)">×</div>
     <iframe src="https://amanhsn55555-eng.github.io/Athreaa-man-chat/"></iframe>
   `;
   
   document.body.appendChild(richWin);
-}
-function hidePanel(id) {
-  document.getElementById(id).style.right = "-100%";
+  
+  // إضافة للمكدس
+  if (!openPanelsStack.includes('richPanel')) {
+    openPanelsStack.push('richPanel');
+  }
+  
+  // إضافة حالة للتاريخ
+  history.pushState({ panelId: 'richPanel', action: 'open' }, '', window.location.href);
 }
 
+// ==================== فتح صفحة فرعية ====================
 function openSub(link) {
   let win = document.createElement("div");
   win.className = "panel";
   win.style.right = "0";
+  win.id = "subPanel_" + Date.now();
+  win.setAttribute('data-dynamic', 'true');
 
   win.innerHTML = `
-    <div class="hideBtn" onclick="this.parentElement.remove()">×</div>
+    <div class="hideBtn" onclick="closeDynamicPanel(this.parentElement)">×</div>
     <iframe src="${link}"></iframe>
   `;
 
   document.body.appendChild(win);
+  
+  // إضافة للمكدس
+  if (!openPanelsStack.includes(win.id)) {
+    openPanelsStack.push(win.id);
+  }
+  
+  // إضافة حالة للتاريخ
+  history.pushState({ panelId: win.id, action: 'open' }, '', window.location.href);
 }
+
+// ==================== تحديث أيقونة الملف الشخصي ====================
+function updateProfileIcon(avatarUrl, emoji) {
+  const profileIcon = document.getElementById('profileNavIcon');
+  if (profileIcon) {
+    if (avatarUrl) {
+      profileIcon.innerHTML = `<img src="${avatarUrl}" alt="profile">`;
+    } else if (emoji) {
+      profileIcon.innerHTML = `<span>${emoji}</span>`;
+    }
+  }
+}
+
+// ==================== منع الخروج من الصفحة ====================
+window.addEventListener('beforeunload', function(e) {
+  // يمكنك إضافة تحذير إذا كانت هناك نوافذ مفتوحة
+  const hasOpenPanels = document.querySelectorAll('.panel[style*="right: 0px"], .panel[style*="right:0px"]').length > 0;
+  if (hasOpenPanels) {
+    e.preventDefault();
+    e.returnValue = '';
+  }
+});
 </script>
 
 </body>

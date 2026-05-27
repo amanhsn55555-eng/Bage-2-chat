@@ -73,6 +73,25 @@
       zoom: 1;
     }
 
+  
+  /* ========== السطر المضاف: رفع مربع الإرسال فوق الأيقونات ========== */
+  .navbar { height: 32px !important; } .navbar * { transform: scale(0.8) !important; transform-origin: center !important; }
+.chat-input-area, 
+.message-input-container, 
+.input-group, 
+[class*="message-input"], 
+[class*="chat-input"], 
+[id*="message-input"], 
+[id*="chat-input"],
+form:has(textarea),
+form:has(input[type="text"]),
+div:has(> textarea[placeholder*="رسالة"]),
+div:has(> input[placeholder*="رسالة"]) {
+  margin-bottom: 50px !important;
+  padding-bottom: 10px !important;
+  position: relative !important;
+  z-index: 5 !important;
+}
     #mainFrame {
       width: 100%;
       flex: 1;

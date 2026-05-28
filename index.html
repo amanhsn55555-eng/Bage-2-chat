@@ -98,7 +98,13 @@ div:has(> input[placeholder*="رسالة"]) {
       border: none;
     }
 
-  .navbar { background: url('https://iili.io/C2dvTPI.gif') center/cover no-repeat !important; }
+  .navbar { border-radius: 0 !important; }
+.panel { border-radius: 0 !important; border: 3px solid black !important; }
+.panel::before { display: none !important; }
+.navbar .icon, .navbar .profile-icon-nav { border-radius: 8px !important; background: rgba(0, 0, 0, 0.7) !important; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0,0,0,0.5) !important; }
+  .navbar { border-radius: 0 !important; }
+.navbar .icon, .navbar .profile-icon-nav { border-radius: 8px !important; background: rgba(0, 0, 0, 0.7) !important; box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5), 0 4px 12px rgba(0,0,0,0.5) !important; }
+  .navbar { background: url('https://iili.io/C2TiDCu.gif') center/cover no-repeat !important; }
     /* navbar */
     .navbar {
       
@@ -156,7 +162,7 @@ div:has(> input[placeholder*="رسالة"]) {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 90%;
+      width: 70%;
       height: 100%;
       background: #111;
       transition: 0.35s;

@@ -316,6 +316,7 @@ div:has(> input[placeholder*="رسالة"]) {
       70% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
     }
+  #ttings p { width: 50px !important; height: 50px !important; padding: 0 !important; margin: 10px auto !important; border-radius: 50% !important; display: flex !important; align-items: center !important; justify-content: center !important; font-size: 20px !important; text-indent: -9999px; overflow: hidden !important; }
   </style>
 </head>
 
@@ -375,19 +376,40 @@ div:has(> input[placeholder*="رسالة"]) {
   <div class="hideBtn" onclick="hidePanel('panel4')">×</div>
   <iframe src="https://amanhsn55555-eng.github.io/Gdar-chat/"></iframe>
 </div>
-
-<!-- settings -->
 <div id="settings" class="panel">
   <div class="hideBtn" onclick="hidePanel('settings')">×</div>
   <div style="padding:20px; color:white; background: linear-gradient(145deg, #f8fafc, #e2e8f0) !important; border: none !important; box-shadow: inset 2px 2px 5px #ffffff, inset -2px -2px 5px #94a3b8, 3px 3px 8px rgba(0,0,0,0.1), -1px -1px 4px rgba(255,255,255,0.6) !important; border-radius: 30px">
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Tnbehtodyyy/')">🔔 </p>
-    <div class="icon" onclick="showRichPanel()">
-    <i class="fa-solid fa-crown" style="color: #FFD700 !important;"></i>
-  </div>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Markiottody/')">المتجر</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">محفضتي</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mqalat-tody/')">قصتي</p>
-    <p onclick="openSub('https://amanhsn55555-eng.github.io/Daam-fany-tody/')"> مراسلة فريق البرمجه</p>
+    
+    <!-- 🔔 التنبيهات -->
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Tnbehtodyyy/')">
+      <i class="fa-solid fa-bell"></i> التنبيهات
+    </p>
+    
+    <!-- 👑 الأثرياء -->
+    <p onclick="showRichPanel()">
+      <i class="fa-solid fa-crown" style="color: #FFD700 !important;"></i> الأثرياء
+    </p>
+    
+    <!-- 🛒 المتجر -->
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mtgar-chat-2/')">
+      <i class="fa-solid fa-store"></i> المتجر
+    </p>
+    
+    <!-- 💰 محفظتي -->
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Hafdhtidy/')">
+      <i class="fa-solid fa-wallet"></i> محفظتي
+    </p>
+    
+    <!-- 📖 قصتي -->
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Mqalat-tody/')">
+      <i class="fa-solid fa-book-open"></i> قصتي
+    </p>
+    
+    <!-- ✉️ مراسلة فريق البرمجة -->
+    <p onclick="openSub('https://amanhsn55555-eng.github.io/Daam-fany-tody/')">
+      <i class="fa-solid fa-envelope"></i> مراسلة فريق البرمجة
+    </p>
+    
   </div>
 </div>
 
